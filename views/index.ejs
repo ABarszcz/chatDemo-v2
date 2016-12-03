@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <h1><%= title %></h1>
+    <!-- Create message area -->
+    <ul id="messages-area"></ul>
+    <!-- Create form for input and submit button -->
+    <form id="form" onsubmit="return false;">
+      <input id="new-message" type="text" /><button onclick="sendFunction()">Send</button>
+    </form>
+
+  </main>
+
+<!-- JavaScript -->
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="javascripts/scripts.js"></script>
+</body>
+</html>

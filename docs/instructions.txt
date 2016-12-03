@@ -1,0 +1,53 @@
+1. Use the express generator to create the application.
+2. Add the CSS stylesheet to the /public/stylesheets directory
+3. Change the title in routes/index.js to "Chat Room Demo"
+4. Edit index.ejs:
+	3.1. Attach the given stylesheet (bootstrap in this case)
+	3.2. Add the unordered list for the messages area
+	3.3. Add the form with the input and button for sending messages
+	3.4. Add the JavaScript links
+		3.4.1. <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		3.4.2. <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+	3.5. Create the script for the page
+		3.5.1. Define socket.io
+		3.5.2. Create the function for sending messages
+			3.5.2.1. Use the emit method to send a prefix "new message" and then the message grabbed from the input on the page
+			3.5.2.1. Clear the input field
+		3.5.3. Create the method that listens for a new message, and adds the message to the list when it is heard
+		3.5.4. Create a method that listens for the connection message, and adds "a user connected" when it is heard
+		3.5.5. ~ disconnection message, and adds "a user disconnected" when it is heard
+		*3.5.6. ~ typing message, and somehow say the user is typing when it is heard
+		*3.5.7. ~ no longer typing message, and somehow remove the user is typing message when it is heard
+		Note: * = not done yet
+5. Edit app.js
+	5.1. Add socket.io to app.io
+	5.2. Add the listeners for socket.io events
+		5.2.1. When a user connects...
+			5.2.1.1. Log a message to the console
+			5.2.1.2. Use the emit method to send that a user connected
+		5.2.2. When a user disconnects...
+			5.2.2.1. Log a message to the console
+			5.2.2.2. Use the emit method to send that a user disconnected
+		5.2.3. When a message is sent...
+			5.2.3.1. Log a message to the console
+			5.2.3.2. Use the emit method to send the chat message through socket.io.
+			
+Other Things
+
+Nick-names:
+	Users could create accounts and log in using passport, then the same way we display the names on a table, we append it to the start of the message acquired from the input field.
+	TODO:
+		Create passport authentication with register / log-in pages
+		Append username to the start of the message in the script on index.ejs
+	
+	Alternatively, we could create an input text box for a user to enter a name. Then we just grab the text from that field and append it to the start of the message acquired from the input field.
+	TODO:
+		Create an input field for a nick-name
+		Append contents of nick-name field to the start of the message in the script on Index.ejs
+		
+Show Who's Online:
+	This depends on how we use the nick-names, since it would abe getting information directly from the nick names.
+	Either way, I think the best way to do it is store the user's nick name in a list or array, and then create a table populated with the list or array.
+	
+	If we use the log in format, then we add the user's username to the list/array when they log in, then remove it on log out.
+	If we use the input text box format, then we store the names as they're created in the field, then remove it when they disconnect by searching through the list/array and deleting their nick-name from the list/array.
